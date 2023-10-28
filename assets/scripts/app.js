@@ -1,27 +1,17 @@
 var userNumber = "";
 var buttons = document.querySelectorAll(".number");
-var numbers = [];
 var resultCalculator = 0;
-
-var calculator = {
-  operator: "",
-  numbers: [],
-};
+var fullStringText = "";
+var operator = "";
+var textResult = "";
 
 for (let index = 0; index < buttons.length; index++) {
   document
     .querySelectorAll(".number")
     [index].addEventListener("click", function () {
-      if (numbers.length == 0) {
-        userNumber = userNumber + this.innerHTML;
-        outputResult(resultCalculator, userNumber);
-      }
-      if (numbers.length >= 1) {
-        userNumber = userNumber + this.innerHTML;
-        numbers[1] = userNumber;
-        outputResult(resultCalculator, `${numbers[0]} + ${numbers[1]}`);
-        console.log(calculator);
-      }
+      userInput = this.innerHTML;
+      textResult = concatStringToDisplay(userInput);
+      outputResult(userNumber, textResult);
     });
 }
 
@@ -44,23 +34,25 @@ function applyOperator(op, a, b) {
   }
 }
 
+function concatStringToDisplay(stringText = "") {
+  fullStringText = fullStringText + stringText;
+  return fullStringText;
+}
+
 function add() {
-  numbers.push(userNumber);
-  outputResult(resultCalculator, `${numbers[0]} +`);
-  userNumber = "";
-  calculator.operator = "+";
-  calculator.numbers.push(numbers[0]);
+  operator = "+";
+  textResult = concatStringToDisplay("+");
+  outputResult(textResult, textResult);
 }
 
 function result() {
-  calculator.numbers.push(numbers[1]);
-  console.log(calculator.operator, numbers[0], numbers[1]);
+  let text = concatStringToDisplay();
+  let operands = text.split(operator);
   resultCalculator = applyOperator(
-    calculator.operator,
-    parseInt(numbers[0]),
-    parseInt(numbers[1])
+    operator,
+    parseInt(operands[0]),
+    parseInt(operands[1])
   );
-  console.log(resultCalculator);
   outputResult(resultCalculator, resultCalculator);
 }
 
