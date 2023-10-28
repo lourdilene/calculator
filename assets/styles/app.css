@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Roboto', open-sans;
+  font-family: "Roboto", open-sans;
 }
 
 body {
@@ -57,6 +57,7 @@ header {
   border: 1px solid #023d6d;
   padding: 1rem;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 #calculator button:focus {

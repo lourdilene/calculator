@@ -1,14 +1,68 @@
-const defaultResult = 0;
-let currentResult = defaultResult;
+var userNumber = "";
+var buttons = document.querySelectorAll(".number");
+var numbers = [];
+var resultCalculator = 0;
 
-/**Everything that comes from the HTML input is string */
-function add() {
-  const calcDescription = `${currentResult} + ${userInput.value}`;
-  currentResult = currentResult + parseInt(userInput.value);
-  outputResult(currentResult, calcDescription);
+var calculator = {
+  operator: "",
+  numbers: [],
+};
+
+for (let index = 0; index < buttons.length; index++) {
+  document
+    .querySelectorAll(".number")
+    [index].addEventListener("click", function () {
+      if (numbers.length == 0) {
+        userNumber = userNumber + this.innerHTML;
+        outputResult(resultCalculator, userNumber);
+      }
+      if (numbers.length >= 1) {
+        userNumber = userNumber + this.innerHTML;
+        numbers[1] = userNumber;
+        outputResult(resultCalculator, `${numbers[0]} + ${numbers[1]}`);
+        console.log(calculator);
+      }
+    });
 }
 
-/**addBtn.addEventListener("click", add); The "add" function is called
- * without the "()" as it indicates that the function will only be called
- * if there is a mouse click */
+function applyOperator(op, a, b) {
+  switch (op) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      return a / b;
+    case "%":
+      return a % b;
+    case "^":
+      return Math.pow(a, b);
+    default:
+      throw Error(`unsupported operator: ${op}`);
+  }
+}
+
+function add() {
+  numbers.push(userNumber);
+  outputResult(resultCalculator, `${numbers[0]} +`);
+  userNumber = "";
+  calculator.operator = "+";
+  calculator.numbers.push(numbers[0]);
+}
+
+function result() {
+  calculator.numbers.push(numbers[1]);
+  console.log(calculator.operator, numbers[0], numbers[1]);
+  resultCalculator = applyOperator(
+    calculator.operator,
+    parseInt(numbers[0]),
+    parseInt(numbers[1])
+  );
+  console.log(resultCalculator);
+  outputResult(resultCalculator, resultCalculator);
+}
+
 addBtn.addEventListener("click", add);
+resultBtn.addEventListener("click", result);
