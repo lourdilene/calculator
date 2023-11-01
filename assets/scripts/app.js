@@ -45,6 +45,24 @@ function add() {
   outputResult(textResult, textResult);
 }
 
+function subtract() {
+  operator = "-";
+  textResult = concatStringToDisplay("-");
+  outputResult(textResult, textResult);
+}
+
+function multiply() {
+  operator = "*";
+  textResult = concatStringToDisplay("*");
+  outputResult(textResult, textResult);
+}
+
+function divide() {
+  operator = "/";
+  textResult = concatStringToDisplay("/");
+  outputResult(textResult, textResult);
+}
+
 function result() {
   let text = concatStringToDisplay();
   let operands = text.split(operator);
@@ -57,4 +75,7 @@ function result() {
 }
 
 addBtn.addEventListener("click", add);
+subtractBtn.addEventListener("click", subtract);
+multiplyBtn.addEventListener("click", multiply);
+divideBtn.addEventListener("click", divide);
 resultBtn.addEventListener("click", result);
