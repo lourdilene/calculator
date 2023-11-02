@@ -19,6 +19,10 @@ header {
   width: 100%;
 }
 
+#current-calculation {
+  text-align: center;
+}
+
 #results,
 #calculator {
   margin: 2rem auto;
