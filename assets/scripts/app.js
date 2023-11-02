@@ -11,7 +11,7 @@ for (let index = 0; index < buttons.length; index++) {
     [index].addEventListener("click", function () {
       userInput = this.innerHTML;
       textResult = concatStringToDisplay(userInput);
-      outputResult(userNumber, textResult);
+      outputResult(resultCalculator, textResult);
     });
 }
 
@@ -42,25 +42,25 @@ function concatStringToDisplay(stringText = "") {
 function add() {
   operator = "+";
   textResult = concatStringToDisplay("+");
-  outputResult(textResult, textResult);
+  outputResult(resultCalculator, textResult);
 }
 
 function subtract() {
   operator = "-";
   textResult = concatStringToDisplay("-");
-  outputResult(textResult, textResult);
+  outputResult(resultCalculator, textResult);
 }
 
 function multiply() {
   operator = "*";
   textResult = concatStringToDisplay("*");
-  outputResult(textResult, textResult);
+  outputResult(resultCalculator, textResult);
 }
 
 function divide() {
   operator = "/";
   textResult = concatStringToDisplay("/");
-  outputResult(textResult, textResult);
+  outputResult(resultCalculator, textResult);
 }
 
 function result() {
@@ -71,7 +71,7 @@ function result() {
     parseInt(operands[0]),
     parseInt(operands[1])
   );
-  outputResult(resultCalculator, resultCalculator);
+  outputResult(resultCalculator, text);
 }
 
 addBtn.addEventListener("click", add);
